@@ -58,9 +58,9 @@ definitions:
       message:
         type: string
   LoginRequest:
-    required: [username, password]
+    required: [email, password]
     properties:
-      username:
+      email:
         type: string
       password:
         type: string
