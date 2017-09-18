@@ -2,7 +2,7 @@ const mysql= require("mysql");
 
 function getConnection()
 {
-    var connection = mysql.createConnection({
+    const connection = mysql.createConnection({
         host     : 'mysql-cmpe280.c4lhvu8c7j2x.us-east-1.rds.amazonaws.com', //host where mysql server is running
         user     : 'admin', //user for the mysql application
         password : 'adminmysql', //password for the mysql application
@@ -16,7 +16,7 @@ function getConnection()
 function fetchData(callback,sqlQuery)
 {
     console.log("\nSQL Query::"+sqlQuery);
-    var connection=getConnection();
+    const connection = getConnection();
     connection.query(sqlQuery, function(err, rows, fields){
             if(err)
             {
@@ -24,7 +24,7 @@ function fetchData(callback,sqlQuery)
             }
             else
             { // return err or result
-                console.log("DB Results:"+rows);
+                console.log("DB Results:"+JSON.stringify(rows));
                 callback(err, rows);
 
             }

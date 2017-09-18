@@ -1,8 +1,9 @@
 'use strict';
 
-let util = require('util');
+const util = require('util');
 const crypto = require('crypto');
-var mysql = require('./mysql');
+const mysql = require('./mysql');
+
 module.exports = {
     doLogin
 };
@@ -13,9 +14,7 @@ function doLogin(req, res) {
 
     let email = reqData.email;
     let password = reqData.password;
-    let loginSuccess = false;
     let getLoginDetails = "SELECT * FROM cmpe280ikeamysql.users WHERE email_id='" + email + "' LIMIT 1";
-    console.log(process.env);
     mysql.fetchData(function (err, results) {
 
         if (err) {
@@ -28,11 +27,11 @@ function doLogin(req, res) {
                 let passwordDB = results[0].password;
                 let saltDB = results[0].salt;
                 //let passwordIN = crypto.pbkdf2Sync(password, saltDB, 100000, 64, 'sha256').toString('hex');
-                if (password == passwordDB) {
-                    loginSuccess = true;
+                if (password === passwordDB) {
                     res.status(200).json({message: "Login done."})
+                } else {
+                    res.status(401).json({message: "Login Failed."});
                 }
-
             } else {
                 res.status(401).json({message: "Login Failed."});
             }
