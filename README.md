@@ -7,6 +7,7 @@ To start:
 1. Clone your fork of the repo.
 1. `$ cd <App root>`
 1. `$ npm install`
+1. 1. Switch to branch `develop`
 
 
 ##### If you want to make changes in the API:
