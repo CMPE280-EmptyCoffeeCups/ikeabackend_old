@@ -22,6 +22,8 @@ paths:
     # binds a127 app logic to a route
     x-swagger-router-controller: users_ctrl
     post:
+      tags:
+          - user
       description: Authenticates users
       operationId: doLogin
       parameters:
